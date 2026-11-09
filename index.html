@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dulce Pasión | Repostería Artesanal - San Bernardo</title>
+  <meta name="description" content="Dulce Pasión - Repostería 100% artesanal en San Bernardo. Tortas tradicionales chilenas, cupcakes gourmet y repostería inclusiva sin gluten, sin azúcar y vegana.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       BARRA SUPERIOR DE AVISOS Y HORARIOS
+       ========================================================================== -->
+  <aside class="top-notice-bar" aria-label="Avisos importantes">
+    <div class="container">
+      <div>
+        <span>📍 Repostería Artesanal en <strong>San Bernardo</strong> | 🚚 Delivery fresco a domicilio</span>
+      </div>
+      <div class="top-notice-links">
+        <span>🕒 Lun - Sáb: 09:00 - 20:00 | Dom: 10:00 - 16:00</span>
+        <a href="#contacto">📞 +56 9 8765 4321</a>
+        <a href="javascript:void(0)" onclick="openTeamProjectModal()" style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px;">🎓 Ver Ficha Académica</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       BARRA DE NAVEGACIÓN PRINCIPAL (STICKY NAVBAR)
+       ========================================================================== -->
+  <header class="header-navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <!-- Logo y Marca -->
+        <a href="#" class="brand-logo-wrap">
+          <div class="logo-emblem">🎂</div>
+          <div class="brand-text-block">
+            <span class="brand-title">Dulce Pasión</span>
+            <span class="brand-tagline">Repostería Artesanal</span>
+          </div>
+        </a>
+
+        <!-- Menú de Navegación -->
+        <nav>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+            <li><a href="#catalogo" class="nav-link">Catálogo & Tortas</a></li>
+            <li><a href="#cobertura" class="nav-link">Cobertura San Bernardo</a></li>
+            <li><a href="#seguridad" class="nav-link">Registro de Clientes</a></li>
+            <li><a href="#contacto" class="nav-link">Consultas & Contacto</a></li>
+            <li><a href="javascript:void(0)" onclick="openTeamProjectModal()" class="nav-link">El Equipo</a></li>
+          </ul>
+        </nav>
+
+        <!-- Botones de Acción -->
+        <div class="navbar-actions">
+          <button class="btn-icon-action" id="userAccountBtn" onclick="location.href='#seguridad'" title="Mi Cuenta / Registro">
+            👤
+          </button>
+          
+          <button class="btn-icon-action" id="cartOpenBtn" onclick="toggleCartDrawer(true)" title="Ver Carrito">
+            🛍️
+            <span class="cart-count-badge" id="cartBadgeCount">0</span>
+          </button>
+
+          <a href="https://wa.me/56987654321?text=Hola%20Dulce%20Pasión,%20quisiera%20consultar%20por%20sus%20tortas%20artesanales" target="_blank" class="btn btn-whatsapp btn-sm" style="display: none; @media(min-width: 900px){display: inline-flex;}">
+            💬 WhatsApp
+          </a>
+
+          <button class="mobile-toggle-btn" id="mobileToggle" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menú">
+            ☰
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO BANNER PRINCIPAL (Capítulo 2.1.4 Portada de Publicación)
+       ========================================================================== -->
+  <section class="hero-section" id="inicio">
+    <div class="container">
+      <div class="hero-wrapper">
+        <div class="hero-banner-image-container">
+          <img src="assets/images/hero-banner.jpg" alt="Dulce Pasión Repostería Artesanal - Taller y Pasteles" class="hero-banner-img">
+          
+          <div class="hero-overlay-gradient">
+            <div class="hero-floating-card">
+              <div class="hero-badge-row">
+                <span class="badge badge-gold">⭐ Recetas 100% Tradicionales</span>
+                <span class="badge badge-rose">🇨🇱 La Once Chilena Hecha Arte</span>
+              </div>
+              <h1 class="hero-title">
+                El sabor de la tradición familiar
+                <span>Dulce Pasión</span>
+              </h1>
+              <p class="hero-desc">
+                Elaboramos tortas y repostería artesanal con el cariño de las recetas de antaño, ingredientes seleccionados y una línea inclusiva para que toda la familia disfrute en San Bernardo.
+              </p>
+              <div class="hero-cta-buttons">
+                <a href="#catalogo" class="btn btn-primary">🍰 Explorar Catálogo de Tortas</a>
+                <a href="#cobertura" class="btn btn-secondary">📍 Ver Cobertura Delivery</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cuatro Pilares / Valores de la Repostería -->
+      <div class="features-strip">
+        <div class="feature-box">
+          <div class="feature-icon-circle">🥣</div>
+          <div>
+            <h4>100% Artesanal</h4>
+            <p>Elaboradas sin premezclas industriales, con manjar de campo e ingredientes puros.</p>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon-circle">☕</div>
+          <div>
+            <h4>La Once Chilena</h4>
+            <p>Pensadas para compartir al salir del trabajo o en las celebraciones familiares del fin de semana.</p>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon-circle">🌱</div>
+          <div>
+            <h4>Línea Inclusiva</h4>
+            <p>Alternativas certificadas sin azúcar para diabéticos, sin gluten para celíacos y 100% veganas.</p>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon-circle">🛵</div>
+          <div>
+            <h4>Delivery San Bernardo</h4>
+            <p>Despacho refrigerado y puntual directamente en la puerta de tu hogar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CONTADOR DE VISITAS & ESTADÍSTICAS (Requerimiento 3.2.4)
+       ========================================================================== -->
+  <section class="impact-counter-section">
+    <div class="container">
+      <div class="counter-grid">
+        <div class="counter-item">
+          <div class="counter-number" id="visitasCount">1.285</div>
+          <div class="counter-label">👁️ Visitas a la Publicación Web</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number">1.420+</div>
+          <div class="counter-label">🎂 Tortas Horneadas a Mano</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number">980+</div>
+          <div class="counter-label">🏠 Familias en San Bernardo</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number">4.9 / 5.0</div>
+          <div class="counter-label">⭐ Calificación de Clientes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CATÁLOGO DE PRODUCTOS Y PRECIOS (Capítulo 2.1.1 & 2.1.2)
+       ========================================================================== -->
+  <section class="catalog-section" id="catalogo">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Nuestras Creaciones</span>
+        <h2 class="section-title">Catálogo de Repostería Artesanal</h2>
+        <p class="section-subtitle">
+          Descubre nuestras tortas tradicionales de receta familiar, formatos individuales de cupcakes y opciones inclusivas especialmente preparadas para ti.
+        </p>
+      </div>
+
+      <!-- Pestañas de Categoría -->
+      <div class="catalog-nav-tabs">
+        <button class="catalog-tab-btn active" data-filter="todas">✨ Todas las Delicias</button>
+        <button class="catalog-tab-btn" data-filter="tradicionales">🎂 Tortas Tradicionales (Estrella)</button>
+        <button class="catalog-tab-btn" data-filter="cupcakes">🧁 Cupcakes & Minipasteles</button>
+        <button class="catalog-tab-btn" data-filter="inclusivas">🌿 Línea Inclusiva & Saludable</button>
+      </div>
+
+      <!-- Barra de Filtros y Búsqueda -->
+      <div class="catalog-search-bar">
+        <div class="search-input-wrap">
+          <span>🔍</span>
+          <input type="text" id="catalogSearchInput" placeholder="Buscar por nombre, ingrediente o porciones (ej: manjar, nuez, chocolate, sin gluten)...">
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <label for="catalogSortSelect" style="font-size: 0.88rem; font-weight: 600; color: var(--color-text-muted);">Ordenar por:</label>
+          <select id="catalogSortSelect" class="catalog-sort-select">
+            <option value="default">Recomendados</option>
+            <option value="popular">Más Populares</option>
+            <option value="price-asc">Precio: Menor a Mayor</option>
+            <option value="price-desc">Precio: Mayor a Menor</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Grid de Productos -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Renderizado dinámicamente con JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       COBERTURA Y DELIVERY EN SAN BERNARDO (Capítulo 1.2.3 & Mapa Oficial)
+       ========================================================================== -->
+  <section class="delivery-section" id="cobertura">
+    <div class="container">
+      <div class="delivery-grid-layout">
+        <!-- Mapa del Documento -->
+        <div class="delivery-map-card">
+          <img src="assets/images/mapa-cobertura.jpg" alt="Mapa de Cobertura y Ventas Dulce Pasión - San Bernardo y Expansión">
+          <div class="delivery-map-legend">
+            <div class="legend-item">
+              <span class="legend-color-box legend-color-current"></span>
+              <span><strong>San Bernardo:</strong> Zona Principal de Ventas y Delivery</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color-box legend-color-future"></span>
+              <span><strong>Comunas Vecinas:</strong> Futura Expansión (Santiago, Maipú, Las Condes)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información y Comprobador de Cobertura -->
+        <div class="delivery-info-content">
+          <span class="section-tag">Despacho Local</span>
+          <h3 class="font-serif">Repostería Fresca a la Puerta de tu Casa</h3>
+          <p style="color: var(--color-text-muted); margin-bottom: 16px;">
+            Elegimos iniciar nuestras operaciones en la comuna de <strong>San Bernardo</strong> para garantizar que cada torta, cupcake y postre llegue con la máxima frescura y la textura perfecta.
+          </p>
+          <ul style="list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 10px;">
+            <li style="display: flex; gap: 10px; align-items: center; font-size: 0.95rem;">
+              <span>✅</span> <strong>Delivery en el día</strong> dentro de todo San Bernardo.
+            </li>
+            <li style="display: flex; gap: 10px; align-items: center; font-size: 0.95rem;">
+              <span>🎁</span> <strong>Despacho GRATIS</strong> por compras superiores a <strong>$30.000</strong>.
+            </li>
+            <li style="display: flex; gap: 10px; align-items: center; font-size: 0.95rem;">
+              <span>🛵</span> Tarifa plana de solo <strong>$2.500</strong> para pedidos menores.
+            </li>
+            <li style="display: flex; gap: 10px; align-items: center; font-size: 0.95rem;">
+              <span>📦</span> Empaque reforzado y refrigerado especial para tortas familiares.
+            </li>
+          </ul>
+
+          <!-- Herramienta Interactiva de Verificación -->
+          <div class="delivery-checker-box">
+            <label for="checkComunaSelect">📍 Consulta la cobertura para tu comuna:</label>
+            <div class="delivery-checker-input-group">
+              <select id="checkComunaSelect">
+                <option value="San Bernardo" selected>San Bernardo (Zona Principal)</option>
+                <option value="Santiago">Santiago Centro</option>
+                <option value="Providencia">Providencia</option>
+                <option value="Las Condes">Las Condes</option>
+                <option value="Maipú">Maipú</option>
+                <option value="La Florida">La Florida</option>
+                <option value="Puente Alto">Puente Alto</option>
+                <option value="Peñalolén">Peñalolén</option>
+              </select>
+              <button class="btn btn-primary" id="checkDeliveryBtn">Consultar</button>
+            </div>
+            <div id="deliveryResultBadge" class="delivery-result-badge"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ESQUEMA DE SEGURIDAD / REGISTRO DE CLIENTES (Capítulo 2.1.3)
+       ========================================================================== -->
+  <section class="security-register-section" id="seguridad">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 40px;">
+        <span class="section-tag">Esquema de Seguridad & Cuenta</span>
+        <h2 class="section-title">Registro de Clientes "Dulce Pasión"</h2>
+        <p class="section-subtitle">
+          Crea tu cuenta segura para agilizar tus pedidos, guardar tus direcciones en San Bernardo y acceder a promociones exclusivas para la once familiar.
+        </p>
+      </div>
+
+      <div class="register-layout">
+        <!-- Formulario con los Requerimientos del Capítulo 2.1.3 -->
+        <div class="register-card-box">
+          <div id="userStatusBadge" style="margin-bottom: 18px;"></div>
+          
+          <form id="clientRegisterForm">
+            <div class="form-group-row">
+              <div class="form-group">
+                <label class="form-label" for="regNombre">Nombre Completo <span class="req">*</span></label>
+                <input type="text" id="regNombre" class="form-control" placeholder="Ej: Francisco López" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regRut">RUT Chileno <span class="req">*</span></label>
+                <input type="text" id="regRut" class="form-control" placeholder="12.345.678-9" required>
+                <small style="font-size: 0.75rem; color: var(--color-text-light);">Formato con o sin puntos y con guión</small>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label class="form-label" for="regEmail">Correo Electrónico (Mail) <span class="req">*</span></label>
+                <input type="email" id="regEmail" class="form-control" placeholder="nombre@correo.cl" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regCelular">Número de Celular <span class="req">*</span></label>
+                <input type="tel" id="regCelular" class="form-control" placeholder="+56 9 1234 5678" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regPassword">Contraseña de Seguridad <span class="req">*</span></label>
+              <input type="password" id="regPassword" class="form-control" placeholder="Crea una clave para proteger tu cuenta" required>
+              <div class="password-strength-meter">
+                <div class="password-strength-bar" id="passwordStrengthBar"></div>
+              </div>
+              <small style="font-size: 0.75rem; color: var(--color-text-light);">Mínimo 6 caracteres, incluye números o mayúsculas.</small>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label class="form-label" for="regComuna">Comuna <span class="req">*</span></label>
+                <select id="regComuna" class="form-control">
+                  <option value="San Bernardo" selected>San Bernardo (Zona Principal)</option>
+                  <option value="Santiago">Santiago</option>
+                  <option value="Providencia">Providencia</option>
+                  <option value="Las Condes">Las Condes</option>
+                  <option value="Maipú">Maipú</option>
+                  <option value="La Florida">La Florida</option>
+                  <option value="Puente Alto">Puente Alto</option>
+                  <option value="Peñalolén">Peñalolén</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="regCiudad">Ciudad <span class="req">*</span></label>
+                <input type="text" id="regCiudad" class="form-control" value="Santiago" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regDireccion">Dirección Completa (Domicilio de Entrega) <span class="req">*</span></label>
+              <input type="text" id="regDireccion" class="form-control" placeholder="Calle, Número, Depto o Villa" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" style="margin-top: 10px;">
+              🔒 Registrar Cuenta & Activar Beneficios
+            </button>
+          </form>
+        </div>
+
+        <!-- Beneficios del Esquema de Seguridad y Datos -->
+        <div class="security-perks-box">
+          <div class="security-perk-card">
+            <div class="perk-icon-wrap">🛡️</div>
+            <div>
+              <h4>Seguridad y Privacidad de Datos</h4>
+              <p>Tus datos de contacto, RUT y domicilio son almacenados con encriptación local segura para la emisión transparente de tus boletas y entregas.</p>
+            </div>
+          </div>
+
+          <div class="security-perk-card">
+            <div class="perk-icon-wrap">🎁</div>
+            <div>
+              <h4>Cupón de Bienvenida Especial</h4>
+              <p>Al registrarte obtienes un <strong>10% de descuento</strong> con el cupón <code>DULCEPASION</code> en tu primer pedido de tortas tradicionales o inclusivas.</p>
+            </div>
+          </div>
+
+          <div class="security-perk-card">
+            <div class="perk-icon-wrap">⚡</div>
+            <div>
+              <h4>Pedidos Rápidos en 1 Clic</h4>
+              <p>Tus datos de despacho en San Bernardo quedan precargados automáticamente para coordinar tu once sin demoras ni trámites repetitivos.</p>
+            </div>
+          </div>
+
+          <div class="security-perk-card">
+            <div class="perk-icon-wrap">🎂</div>
+            <div>
+              <h4>Recordatorio de Fechas Especiales</h4>
+              <p>Recibe sugerencias para aniversarios y cumpleaños familiares con tortas personalizadas hechas a tu gusto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PUBLICIDAD EXTERNA & ALIANZAS LOCALES (Capítulo 3.2.5)
+       ========================================================================== -->
+  <section class="sponsors-ad-section">
+    <div class="container">
+      <div class="sponsors-banner-wrapper">
+        <div class="sponsors-text-block">
+          <span class="badge badge-gold" style="margin-bottom: 6px;">Espacio de Alianzas Locales</span>
+          <h4>Nuestros Proveedores y Aliados en San Bernardo</h4>
+          <p>Apoyamos el comercio de proximidad con ingredientes chilenos de primera calidad y empaques sustentables y compostables.</p>
+        </div>
+        <div class="sponsors-logos-strip">
+          <div class="sponsor-pill">🌾 Harinas Puras del Valle</div>
+          <div class="sponsor-pill">☕ Café de Grano San Bernardo</div>
+          <div class="sponsor-pill">🥚 Huevos de Campo Libres</div>
+          <div class="sponsor-pill">🌱 Packaging 100% Biodegradable</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CONSULTAS Y MENSAJES DE CLIENTES (Capítulo 3.2.2)
+       ========================================================================== -->
+  <section class="contact-section" id="contacto">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 35px;">
+        <span class="section-tag">Canal de Comunicación</span>
+        <h2 class="section-title">Mensajes & Consultas de Clientes</h2>
+        <p class="section-subtitle">
+          ¿Tienes dudas sobre los ingredientes de nuestra línea sin gluten o quieres cotizar una torta personalizada? Escríbenos directamente.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Información de Contacto -->
+        <div class="contact-info-card">
+          <h3 class="font-serif" style="margin-bottom: 10px;">Taller de Pastelería</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.95rem;">
+            Ven a conocernos o coordina el retiro de tus tortas en nuestro punto de San Bernardo.
+          </p>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <h5 style="color: var(--color-primary-dark);">Ubicación Taller</h5>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">Av. San José #1420, Comuna de San Bernardo, Región Metropolitana.</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">💬</div>
+            <div>
+              <h5 style="color: var(--color-primary-dark);">Atención por WhatsApp</h5>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">+56 9 8765 4321 (Respuestas en menos de 15 minutos)</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <div>
+              <h5 style="color: var(--color-primary-dark);">Correo de Contacto</h5>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">contacto@dulcepasion.cl</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">🕒</div>
+            <div>
+              <h5 style="color: var(--color-primary-dark);">Horarios de Atención</h5>
+              <p style="color: var(--color-text-muted); font-size: 0.9rem;">Lunes a Sábado: 09:00 a 20:00 hrs | Domingo: 10:00 a 16:00 hrs</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de Mensaje -->
+        <div class="contact-form-box">
+          <form id="clientContactForm">
+            <div class="form-group">
+              <label class="form-label" for="contactNombre">Tu Nombre Completo <span class="req">*</span></label>
+              <input type="text" id="contactNombre" class="form-control" placeholder="Ej: Marcela González" required>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">Correo Electrónico <span class="req">*</span></label>
+                <input type="email" id="contactEmail" class="form-control" placeholder="tu-email@gmail.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactAsunto">Tipo de Consulta</label>
+                <select id="contactAsunto" class="form-control">
+                  <option value="Torta Personalizada">Cotizar Torta Personalizada</option>
+                  <option value="Consulta Celíacos / Inclusiva">Línea Sin Gluten / Vegana / Diabéticos</option>
+                  <option value="Delivery y Cobertura">Dudas de Despacho en San Bernardo</option>
+                  <option value="Felicitaciones o Sugerencias">Felicitaciones o Sugerencias</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contactMensaje">Tu Mensaje o Consulta <span class="req">*</span></label>
+              <textarea id="contactMensaje" class="form-control" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+              💌 Enviar Mensaje a Dulce Pasión
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PRESENTACIÓN ACADÉMICA Y EQUIPO DEL PROYECTO (Capítulo V)
+       ========================================================================== -->
+  <section class="academic-project-section" id="equipo">
+    <div class="container">
+      <div class="academic-badge-banner">
+        <div class="academic-badge-img-wrap">
+          <img src="assets/images/integrantes.png" alt="Tarjeta Oficial de Integrantes - Herramientas Digitales" class="academic-badge-img">
+        </div>
+        <div>
+          <span class="badge badge-gold">Herramientas Digitales | Proyecto Web</span>
+          <h3 class="font-serif" style="margin: 10px 0 6px;">Dulce Pasión - Tienda de Repostería Artesanal</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 12px;">
+            Plataforma desarrollada para el diseño, proyección y comercialización online de repostería artesanal con enfoque en las familias de San Bernardo y tradiciones chilenas.
+          </p>
+
+          <div class="team-members-chips">
+            <div class="team-chip">
+              <span>👤 Francisco López</span>
+              <span class="role">Líder & Desarrollo</span>
+            </div>
+            <div class="team-chip">
+              <span>👤 Julio Lázaro</span>
+              <span class="role">Diseño & Estructura</span>
+            </div>
+            <div class="team-chip">
+              <span>👤 Julieta Valenzuela</span>
+              <span class="role">Catálogo & Precios</span>
+            </div>
+            <div class="team-chip">
+              <span>👤 Sayen Toro</span>
+              <span class="role">Seguridad & Cobertura</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; margin-top: 18px; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm" onclick="openTeamProjectModal()">
+              📋 Ver Cronograma & Planilla de Tareas (Capítulo V)
+            </button>
+            <a href="#catalogo" class="btn btn-primary btn-sm">
+              🍰 Probar la Tienda Virtual
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Dulce Pasión</h3>
+          <p>
+            Repostería 100% artesanal en San Bernardo, Chile. Rescatando el sabor familiar de la once tradicional chilena con ingredientes naturales y opciones inclusivas.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#catalogo">Catálogo de Tortas</a></li>
+            <li><a href="#cobertura">Cobertura en San Bernardo</a></li>
+            <li><a href="#seguridad">Registro y Seguridad</a></li>
+            <li><a href="#contacto">Contacto & Consultas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Categorías</h4>
+          <ul class="footer-links">
+            <li><a href="#catalogo">Tortas Tradicionales</a></li>
+            <li><a href="#catalogo">Cupcakes y Minipasteles</a></li>
+            <li><a href="#catalogo">Línea Vegana</a></li>
+            <li><a href="#catalogo">Sin Azúcar (Diabéticos)</a></li>
+            <li><a href="#catalogo">Sin Gluten (Celíacos)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Medios de Pago</h4>
+          <p style="font-size: 0.88rem; color: #dfc1ba; margin-bottom: 12px;">
+            Aceptamos Webpay, Tarjetas de Débito/Crédito, Transferencia BancoEstado y Efectivo contra entrega.
+          </p>
+          <div style="font-size: 1.4rem; display: flex; gap: 10px;">
+            <span>💳</span><span>🏦</span><span>💵</span><span>📱</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 <strong>Dulce Pasión Repostería Artesanal</strong>. San Bernardo, Santiago de Chile. Todos los derechos reservados.
+        </div>
+        <div>
+          Proyecto Asignatura: <strong>Herramientas Digitales</strong> | Integrantes: Francisco López, Julio Lázaro, Julieta Valenzuela, Sayen Toro.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       CARRITO DE COMPRAS FLOTANTE (OFFCANVAS DRAWER)
+       ========================================================================== -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="toggleCartDrawer(false)"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3 class="font-serif">🛍️ Tu Canasta Dulce</h3>
+      <button class="btn-close-drawer" onclick="toggleCartDrawer(false)" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div class="cart-drawer-items" id="cartDrawerItems">
+      <!-- Se inyecta con JavaScript -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <!-- Cupón -->
+      <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+        <input type="text" id="couponCodeInput" placeholder="Cupón (ej: DULCEPASION)" style="flex: 1; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 0.85rem; text-transform: uppercase;">
+        <button class="btn btn-secondary btn-sm" onclick="applyCoupon()">Aplicar</button>
+      </div>
+
+      <div class="cart-summary-line">
+        <span>Subtotal:</span>
+        <strong id="cartSubtotalAmount">$0</strong>
+      </div>
+      <div class="cart-summary-line" id="cartDiscountLine" style="display: none; color: #27ae60;">
+        <span>Descuento:</span>
+        <strong id="cartDiscountAmount">-$0</strong>
+      </div>
+      <div class="cart-summary-line">
+        <span>Despacho en San Bernardo:</span>
+        <strong id="cartShippingAmount">$2.500</strong>
+      </div>
+      <div class="cart-summary-total">
+        <span>Total a Pagar:</span>
+        <span id="cartTotalAmount">$0</span>
+      </div>
+
+      <button class="btn btn-primary w-100" onclick="openCheckoutModal()">
+        🍰 Continuar y Finalizar Pedido
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       MODAL DETALLE DE PRODUCTO
+       ========================================================================== -->
+  <div class="modal-overlay" id="productDetailModal">
+    <div class="modal-box">
+      <button class="modal-header-close" onclick="closeModal('productDetailModal')" aria-label="Cerrar">✕</button>
+      <div class="modal-body" id="productDetailContent">
+        <!-- Contenido dinámico inyectado por JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL DE CHECKOUT / FINALIZAR PEDIDO
+       ========================================================================== -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-box">
+      <button class="modal-header-close" onclick="closeModal('checkoutModal')" aria-label="Cerrar">✕</button>
+      <div class="modal-body">
+        <h3 class="font-serif" style="color: var(--color-primary-dark); margin-bottom: 6px;">Finalizar Pedido en San Bernardo</h3>
+        <p style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+          Ingresa tus datos para coordinar el despacho directo o retiro de tu repostería artesanal.
+        </p>
+
+        <form id="checkoutOrderForm" onsubmit="processCheckoutOrder(event)">
+          <div class="form-group-row">
+            <div class="form-group">
+              <label class="form-label" for="checkoutName">Nombre Completo <span class="req">*</span></label>
+              <input type="text" id="checkoutName" class="form-control" required placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkoutPhone">Teléfono / WhatsApp <span class="req">*</span></label>
+              <input type="tel" id="checkoutPhone" class="form-control" required placeholder="+56 9 ...">
+            </div>
+          </div>
+
+          <div class="form-group-row">
+            <div class="form-group">
+              <label class="form-label" for="checkoutComuna">Comuna de Entrega <span class="req">*</span></label>
+              <select id="checkoutComuna" class="form-control">
+                <option value="San Bernardo" selected>San Bernardo</option>
+                <option value="Santiago">Santiago Centro</option>
+                <option value="Providencia">Providencia</option>
+                <option value="Las Condes">Las Condes</option>
+                <option value="Maipú">Maipú</option>
+                <option value="La Florida">La Florida</option>
+                <option value="Puente Alto">Puente Alto</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkoutDate">Fecha y Hora Requerida <span class="req">*</span></label>
+              <input type="datetime-local" id="checkoutDate" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="checkoutAddress">Dirección Exacta de Despacho <span class="req">*</span></label>
+            <input type="text" id="checkoutAddress" class="form-control" required placeholder="Calle, Número, Depto o Villa">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="checkoutPayment">Método de Pago Preferido <span class="req">*</span></label>
+            <select id="checkoutPayment" class="form-control">
+              <option value="Transferencia Bancaria (BancoEstado / Santander)">Transferencia Bancaria (BancoEstado / Santander)</option>
+              <option value="Webpay / Redcompra">Webpay / Redcompra (Débito o Crédito)</option>
+              <option value="Efectivo contra entrega en San Bernardo">Efectivo contra entrega en San Bernardo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="checkoutNotes">Notas especiales o dedicatoria</label>
+            <input type="text" id="checkoutNotes" class="form-control" placeholder="Ej: Escribir 'Feliz Cumple Mamá' en la torta">
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100" style="margin-top: 10px;">
+            🎂 Confirmar Pedido y Abrir Resumen
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL DE ÉXITO DE PEDIDO
+       ========================================================================== -->
+  <div class="modal-overlay" id="orderSuccessModal">
+    <div class="modal-box text-center">
+      <button class="modal-header-close" onclick="closeModal('orderSuccessModal')" aria-label="Cerrar">✕</button>
+      <div class="modal-body">
+        <span style="font-size: 3.5rem; display: block; margin-bottom: 10px;">🎉🎂</span>
+        <h3 class="font-serif" style="color: var(--color-primary-dark); margin-bottom: 8px;">¡Muchas Gracias por tu Pedido!</h3>
+        <p style="color: var(--color-text-muted); font-size: 0.95rem;">
+          Tu solicitud ha sido ingresada en el sistema de <strong>Dulce Pasión</strong>. Hemos preparado un mensaje directo para confirmar los detalles por WhatsApp con nuestra pastelería:
+        </p>
+
+        <div id="orderSuccessDetails"></div>
+
+        <div style="display: flex; gap: 12px; justify-content: center; margin-top: 20px;">
+          <button class="btn btn-whatsapp" id="orderWhatsAppBtn">
+            💬 Enviar Resumen por WhatsApp
+          </button>
+          <button class="btn btn-secondary" onclick="closeModal('orderSuccessModal')">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL FICHA ACADÉMICA Y CRONOGRAMA DE TAREAS (Capítulo V)
+       ========================================================================== -->
+  <div class="modal-overlay" id="teamProjectModal">
+    <div class="modal-box" style="max-width: 720px;">
+      <button class="modal-header-close" onclick="closeModal('teamProjectModal')" aria-label="Cerrar">✕</button>
+      <div class="modal-body">
+        <div class="text-center" style="margin-bottom: 20px;">
+          <span class="badge badge-gold">Herramientas Digitales</span>
+          <h3 class="font-serif" style="margin-top: 8px; color: var(--color-primary-dark);">Ficha del Proyecto & Planificación</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.9rem;">
+            Entrega: <strong>2 de Noviembre de 2026</strong> | Dulce Pasión - Repostería Artesanal
+          </p>
+        </div>
+
+        <div style="background: var(--color-surface-soft); padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); margin-bottom: 20px;">
+          <h4 style="font-size: 1rem; color: var(--color-primary-dark); margin-bottom: 8px;">Integrantes del Equipo:</h4>
+          <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.9rem;">
+            <li>• <strong>Francisco López</strong> (Líder del Proyecto)</li>
+            <li>• <strong>Julio Lázaro</strong> (Diseño Web y Prototipado)</li>
+            <li>• <strong>Julieta Valenzuela</strong> (Catálogo y Proyecciones)</li>
+            <li>• <strong>Sayen Toro</strong> (Seguridad y Cobertura)</li>
+          </ul>
+        </div>
+
+        <h4 style="font-size: 1.05rem; color: var(--color-primary-dark); margin-bottom: 10px;">Capítulo V: Planilla de Cronograma de Actividades</h4>
+        <div style="border: 1px solid var(--color-border); border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 16px;">
+          <img src="assets/images/image6.png" alt="Cronograma de Actividades del Equipo" style="width: 100%; display: block;">
+        </div>
+
+        <p style="font-size: 0.82rem; color: var(--color-text-light); text-align: center;">
+          Documento elaborado según normas y formato para la asignatura de Herramientas Digitales.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Principal -->
+  <script src="js/app.js"></script>
+</body>
+</html>

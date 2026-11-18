@@ -20,7 +20,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Capas finas de masa hojarasca crujiente artesanal, abundante manjar de campo casero y nueces chilenas tostadas seleccionadas.',
     ingredients: 'Harina de trigo seleccionada, manjar artesanal de campo, nueces tostadas, mantequilla natural y toque de azúcar flor.',
     allergens: 'Contiene gluten, derivados lácteos y frutos secos (nueces).',
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/torta-milhojas.jpg',
     popular: true
   },
   {
@@ -36,7 +36,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Bizcocho húmedo de chocolate cacao amargo premium, relleno con abundante crema chantilly natural y cerezas maceradas.',
     ingredients: 'Cacao puro 100%, crema fresca batida, cerezas al licor artesanal suave, bizcocho de vainilla y virutas de chocolate negro.',
     allergens: 'Contiene gluten, huevo y leche.',
-    image: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/torta-selva-negra.jpg',
     popular: true
   },
   {
@@ -52,7 +52,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Bizcocho esponjoso empapado en nuestra exclusiva mezcla de tres leches (evaporada, condensada y crema), cubierto de merengue dorado suave.',
     ingredients: 'Bizcocho artesanal, leche condensada, leche evaporada, crema de leche de vaca, merengue italiano y canela suave.',
     allergens: 'Contiene gluten, leche y huevo.',
-    image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/torta-tres-leches.jpg',
     popular: false
   },
   {
@@ -68,7 +68,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Delicadas láminas de fino panqueque de vainilla y naranja, intercaladas con suave trufa de chocolate belga semi-amargo.',
     ingredients: 'Panqueques artesanales horneados lámina a lámina, trufa de chocolate 60% cacao, licor de naranja suave y cobertura de ganache.',
     allergens: 'Contiene gluten, huevo y leche.',
-    image: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/torta-panqueque-trufa.jpg',
     popular: true
   },
   {
@@ -84,7 +84,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Diseño a elección para cumpleaños, aniversarios y celebraciones familiares en San Bernardo con dedicatoria y decoración especial.',
     ingredients: 'Sabor a elección (bizcocho o panqueque), rellenos a convenir (manjar, frambuesa, chocolate, trufa) y decorado en buttercream o fondant.',
     allergens: 'Consultar según diseño y sabor elegido.',
-    image: 'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/torta-personalizada.jpg',
     popular: false
   },
 
@@ -102,7 +102,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Perfecta para regalar o compartir en la oficina y en la once. Incluye sabores: manjar nuez, frutos del bosque, chocolate fudge y vainilla francesa.',
     ingredients: 'Mantequilla, huevos frescos de campo, harinas finas, cacao y buttercream artesanal de variados sabores.',
     allergens: 'Contiene gluten, huevo y leche.',
-    image: 'https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/cupcakes-surtidos.jpg',
     popular: true
   },
   {
@@ -118,7 +118,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Mini ponqués con el inconfundible color rojo terciopelo, textura ultra suave con sutil toque de cacao y coronados con frosting de queso crema.',
     ingredients: 'Harina de repostería, buttermilk, cacao suave, extracto natural de vainilla y frosting de queso crema Philadelphia.',
     allergens: 'Contiene gluten, huevo y leche.',
-    image: 'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/cupcakes-red-velvet.jpg',
     popular: true
   },
   {
@@ -134,7 +134,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Cheesecake horneado a baño María sobre base crocante de galletas artesanas, cubierto con mermelada casera de arándanos, frambuesas y moras.',
     ingredients: 'Queso crema de alta calidad, galletas artesanales de avena y mantequilla, azúcar rubia y coulis de frutos del bosque.',
     allergens: 'Contiene derivados lácteos y gluten.',
-    image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/cheesecake-frutos-rojos.jpg',
     popular: false
   },
 
@@ -152,7 +152,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Elaborada completamente a base de plantas, 100% libre de lácteos y huevos. Bizcocho húmedo de cacao con coulis de frambuesas frescas naturales.',
     ingredients: 'Harina integral orgánica, cacao puro sin aditivos, leche de almendras casera, aceite de coco virgen y frambuesas naturales del sur.',
     allergens: 'Apto para veganos y alérgicos a la proteína de leche de vaca (APLV). Contiene frutos secos (almendra).',
-    image: 'https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/torta-vegana-choco.jpg',
     popular: true
   },
   {
@@ -168,7 +168,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Endulzada 100% con alulosa y estevia pura. Bizcocho de vainilla liviano relleno de crema chantilly light y abundantes frutos rojos frescos.',
     ingredients: 'Harina de trigo fina, alulosa pura, estevia grado repostería, crema vegetal liviana sin azúcar y frutos del bosque frescos.',
     allergens: 'Apta para personas que controlan el azúcar o diabetes. Contiene gluten y leche.',
-    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/torta-sin-azucar.jpg',
     popular: true
   },
   {
@@ -184,7 +184,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Delicioso minipastel elaborado en área aislada con harinas alternativas certificadas (arroz, mandioca y maíz) para celíacos.',
     ingredients: 'Mix de harinas sin gluten certificadas, manjar artesanal sin gluten ni lactosa, mantequilla clarificada y nueces.',
     allergens: '100% Libre de Gluten / Apto Celíacos. Contiene leche y huevo.',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80',
+    image: 'assets/images/postre-sin-gluten.jpg',
     popular: false
   }
 ];

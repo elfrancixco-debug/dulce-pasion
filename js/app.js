@@ -84,7 +84,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Diseño a elección para cumpleaños, aniversarios y celebraciones familiares en San Bernardo con dedicatoria y decoración especial.',
     ingredients: 'Sabor a elección (bizcocho o panqueque), rellenos a convenir (manjar, frambuesa, chocolate, trufa) y decorado en buttercream o fondant.',
     allergens: 'Consultar según diseño y sabor elegido.',
-    image: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=700&q=80',
+    image: 'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=700&q=80',
     popular: false
   },
 

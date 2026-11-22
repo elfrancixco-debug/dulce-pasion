@@ -1608,3 +1608,74 @@ h1, h2, h3, h4, .font-serif {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   PANEL Y TABLA DE CLIENTES REGISTRADOS (DASHBOARD)
+   ========================================================================== */
+.clients-dashboard-box {
+  background: #ffffff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+}
+
+.clients-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.clients-table-container {
+  max-height: 380px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+}
+
+.clients-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.clients-table th {
+  background: var(--color-surface-soft);
+  color: var(--color-primary-dark);
+  padding: 10px 12px;
+  font-weight: 700;
+  border-bottom: 1.5px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.clients-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border-light);
+  color: var(--color-text-main);
+  vertical-align: middle;
+}
+
+.clients-table tr:hover {
+  background: #fff9f6;
+}
+
+.client-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #1e7e34;
+  text-decoration: none;
+  font-weight: 600;
+}
+.client-wa-btn:hover {
+  text-decoration: underline;
+}

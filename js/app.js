@@ -192,6 +192,32 @@ const PRODUCTS_DATA = [
 // --- Estado de la Aplicación ---
 let cart = JSON.parse(localStorage.getItem('dulce_pasion_cart')) || [];
 let registeredUser = JSON.parse(localStorage.getItem('dulce_pasion_user')) || null;
+let clientsList = JSON.parse(localStorage.getItem('dulce_pasion_clients_list')) || [
+  {
+    id: 'cli_1',
+    nombre: 'Francisco López',
+    celular: '+56 9 8452 1190',
+    email: 'francisco.lopez@gmail.com',
+    comuna: 'San Bernardo',
+    fecha: '20/11/2026, 17:30'
+  },
+  {
+    id: 'cli_2',
+    nombre: 'Valentina Morales',
+    celular: '+56 9 9341 5521',
+    email: 'vale.morales.sb@gmail.com',
+    comuna: 'San Bernardo',
+    fecha: '21/11/2026, 11:15'
+  },
+  {
+    id: 'cli_3',
+    nombre: 'Camila Sepúlveda',
+    celular: '+56 9 7622 8904',
+    email: 'camilasepulveda@hotmail.com',
+    comuna: 'San Bernardo',
+    fecha: '21/11/2026, 19:40'
+  }
+];
 let appliedDiscount = 0; // Porcentaje de descuento (0 a 1)
 let appliedCouponCode = '';
 let currentFilter = 'todas';
@@ -208,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFilterTabs();
   setupSearchAndSort();
   setupRegistrationForm();
+  renderClientsTable();
   setupContactForm();
   setupDeliveryChecker();
   checkLoggedInUser();
@@ -676,101 +703,144 @@ function processCheckoutOrder(e) {
 }
 
 // ==========================================================================
-// ESQUEMA DE SEGURIDAD / REGISTRO DE CLIENTES (Capítulo 2.1.3)
+// REGISTRO DE CLIENTES & BASE DE DATOS EN VIVO
 // ==========================================================================
 function setupRegistrationForm() {
   const form = document.getElementById('clientRegisterForm');
-  const passInput = document.getElementById('regPassword');
-  const strengthBar = document.getElementById('passwordStrengthBar');
-
-  if (passInput && strengthBar) {
-    passInput.addEventListener('input', () => {
-      const val = passInput.value;
-      let score = 0;
-      if (val.length >= 6) score += 25;
-      if (val.length >= 8) score += 25;
-      if (/[A-Z]/.test(val)) score += 25;
-      if (/[0-9]|[^A-Za-z0-9]/.test(val)) score += 25;
-
-      strengthBar.style.width = score + '%';
-      if (score < 50) {
-        strengthBar.style.background = '#e74c3c';
-      } else if (score < 75) {
-        strengthBar.style.background = '#f39c12';
-      } else {
-        strengthBar.style.background = '#27ae60';
-      }
-    });
-  }
 
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
       const nombre = document.getElementById('regNombre').value.trim();
-      const rut = document.getElementById('regRut').value.trim();
-      const email = document.getElementById('regEmail').value.trim();
-      const password = document.getElementById('regPassword').value;
       const celular = document.getElementById('regCelular').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
       const comuna = document.getElementById('regComuna').value;
-      const ciudad = document.getElementById('regCiudad').value.trim();
-      const direccion = document.getElementById('regDireccion').value.trim();
 
-      if (!validarRutChileno(rut)) {
-        showToast('El RUT ingresado no es válido. Formato esperado: 12345678-9');
-        document.getElementById('regRut').focus();
-        return;
-      }
+      const now = new Date();
+      const fecha = now.toLocaleDateString('es-CL', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ', ' +
+                    now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
 
-      registeredUser = {
+      const newClient = {
+        id: 'cli_' + Date.now(),
         nombre,
-        rut,
-        email,
         celular,
+        email,
         comuna,
-        ciudad,
-        direccion,
-        registeredAt: new Date().toLocaleDateString('es-CL')
+        fecha
       };
 
+      // Guardar en la base de datos de clientes
+      clientsList.unshift(newClient);
+      localStorage.setItem('dulce_pasion_clients_list', JSON.stringify(clientsList));
+
+      // Guardar sesión activa del usuario
+      registeredUser = newClient;
       localStorage.setItem('dulce_pasion_user', JSON.stringify(registeredUser));
+
+      // Renderizar tabla y estado
+      renderClientsTable();
       checkLoggedInUser();
-      showToast(`¡Bienvenid@ a Dulce Pasión, ${nombre}! Tu cuenta está activa 🌟`);
+
+      // Notificación automática por correo a pasiondulce36@gmail.com vía FormSubmit en segundo plano
+      try {
+        fetch('https://formsubmit.co/ajax/pasiondulce36@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `Nuevo Cliente Registrado: ${nombre} (${comuna})`,
+            Nombre: nombre,
+            Celular: celular,
+            Correo: email,
+            Comuna: comuna,
+            Fecha_Registro: fecha
+          })
+        }).catch(() => {});
+      } catch (err) {}
+
+      showToast(`¡Registro completado! Bienvenid@ a Dulce Pasión, ${nombre} 🍰`);
       form.reset();
-      if (strengthBar) strengthBar.style.width = '0%';
     });
   }
 }
 
-// Validador de RUT Chileno (Algoritmo Módulo 11)
-function validarRutChileno(rutCompleto) {
-  if (!rutCompleto) return false;
-  let rutLimpio = rutCompleto.replace(/\./g, '').replace(/-/g, '').trim().toUpperCase();
-  if (rutLimpio.length < 8) return false;
+function renderClientsTable() {
+  const countEl = document.getElementById('totalRegistradosCount');
+  const tbody = document.getElementById('clientsTableBody');
+  if (countEl) countEl.textContent = clientsList.length;
+  if (!tbody) return;
 
-  const cuerpo = rutLimpio.slice(0, -1);
-  const dv = rutLimpio.slice(-1);
-
-  let suma = 0;
-  let multiplo = 2;
-
-  for (let i = 1; i <= cuerpo.length; i++) {
-    const index = multiplo * rutLimpio.charAt(cuerpo.length - i);
-    suma += index;
-    if (multiplo < 7) {
-      multiplo += 1;
-    } else {
-      multiplo = 2;
-    }
+  if (clientsList.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" style="text-align: center; color: var(--color-text-muted); padding: 24px;">
+          Aún no hay clientes registrados. ¡Sé el primero en registrarte!
+        </td>
+      </tr>
+    `;
+    return;
   }
 
-  const dvEsperado = 11 - (suma % 11);
-  let dvCalc = '';
-  if (dvEsperado === 11) dvCalc = '0';
-  else if (dvEsperado === 10) dvCalc = 'K';
-  else dvCalc = dvEsperado.toString();
+  tbody.innerHTML = clientsList.map(c => {
+    const cleanPhone = c.celular.replace(/[^0-9]/g, '');
+    const isSanBernardo = c.comuna.toLowerCase().includes('san bernardo');
+    const comunaBadge = isSanBernardo ?
+      `<span class="badge badge-rose" style="font-size: 0.72rem;">${c.comuna}</span>` :
+      `<span class="badge" style="background:#f3f3f3; color:#555; font-size: 0.72rem;">${c.comuna}</span>`;
 
-  return dv === dvCalc;
+    return `
+      <tr>
+        <td><strong>${c.nombre}</strong></td>
+        <td>
+          <a href="https://wa.me/${cleanPhone}" target="_blank" class="client-wa-btn" title="Contactar por WhatsApp">
+            💬 ${c.celular}
+          </a>
+        </td>
+        <td>
+          <a href="mailto:${c.email}" style="color: var(--color-primary); text-decoration: none;">
+            ${c.email}
+          </a>
+        </td>
+        <td>${comunaBadge}</td>
+        <td style="color: var(--color-text-light); font-size: 0.8rem;">${c.fecha}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function downloadClientsCSV() {
+  if (clientsList.length === 0) {
+    showToast('No hay registros aún para descargar.');
+    return;
+  }
+
+  let csvContent = '\uFEFF'; // BOM para que Excel en Windows abra con acentos perfectos
+  csvContent += 'Nombre;Teléfono;Correo;Comuna;Fecha de Registro\r\n';
+
+  clientsList.forEach(c => {
+    const row = [
+      `"${c.nombre.replace(/"/g, '""')}"`,
+      `"${c.celular.replace(/"/g, '""')}"`,
+      `"${c.email.replace(/"/g, '""')}"`,
+      `"${c.comuna.replace(/"/g, '""')}"`,
+      `"${c.fecha.replace(/"/g, '""')}"`
+    ];
+    csvContent += row.join(';') + '\r\n';
+  });
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', `clientes_dulce_pasion_${new Date().toISOString().slice(0, 10)}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  showToast('Planilla descargada exitosamente en formato Excel 📊');
 }
 
 function checkLoggedInUser() {
@@ -785,7 +855,7 @@ function checkLoggedInUser() {
     if (userStatusBadge) {
       userStatusBadge.innerHTML = `
         <div style="background: #eaf6ec; border: 1px solid #c3e6cb; padding: 12px 16px; border-radius: var(--radius-sm); color: #2b7a3a; font-size: 0.88rem;">
-          ✨ <strong>Cliente Registrado:</strong> ${registeredUser.nombre} | RUT: ${registeredUser.rut} | Comuna: ${registeredUser.comuna}
+          ✨ <strong>Cliente Registrado:</strong> ${registeredUser.nombre} | Celular: ${registeredUser.celular} | Comuna: ${registeredUser.comuna}
           <button onclick="logoutUser()" style="margin-left: 10px; background: none; border: none; color: #c9302c; text-decoration: underline; cursor: pointer;">Cerrar sesión</button>
         </div>
       `;

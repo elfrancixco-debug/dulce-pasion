@@ -20,7 +20,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Capas finas de masa hojarasca crujiente artesanal, abundante manjar de campo casero y nueces chilenas tostadas seleccionadas.',
     ingredients: 'Harina de trigo seleccionada, manjar artesanal de campo, nueces tostadas, mantequilla natural y toque de azúcar flor.',
     allergens: 'Contiene gluten, derivados lácteos y frutos secos (nueces).',
-    image: 'assets/images/torta-milhojas.jpg',
+    image: 'assets/images/torta-milhojas.png',
     popular: true
   },
   {
@@ -36,7 +36,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Bizcocho húmedo de chocolate cacao amargo premium, relleno con abundante crema chantilly natural y cerezas maceradas.',
     ingredients: 'Cacao puro 100%, crema fresca batida, cerezas al licor artesanal suave, bizcocho de vainilla y virutas de chocolate negro.',
     allergens: 'Contiene gluten, huevo y leche.',
-    image: 'assets/images/torta-selva-negra.jpg',
+    image: 'assets/images/torta-selva-negra.png',
     popular: true
   },
   {
@@ -52,7 +52,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Bizcocho esponjoso empapado en nuestra exclusiva mezcla de tres leches (evaporada, condensada y crema), cubierto de merengue dorado suave.',
     ingredients: 'Bizcocho artesanal, leche condensada, leche evaporada, crema de leche de vaca, merengue italiano y canela suave.',
     allergens: 'Contiene gluten, leche y huevo.',
-    image: 'assets/images/torta-tres-leches.jpg',
+    image: 'assets/images/torta-tres-leches.png',
     popular: false
   },
   {
@@ -102,7 +102,7 @@ const PRODUCTS_DATA = [
     shortDesc: 'Perfecta para regalar o compartir en la oficina y en la once. Incluye sabores: manjar nuez, frutos del bosque, chocolate fudge y vainilla francesa.',
     ingredients: 'Mantequilla, huevos frescos de campo, harinas finas, cacao y buttercream artesanal de variados sabores.',
     allergens: 'Contiene gluten, huevo y leche.',
-    image: 'assets/images/cupcakes-surtidos.jpg',
+    image: 'assets/images/cupcakes-surtidos.webp',
     popular: true
   },
   {

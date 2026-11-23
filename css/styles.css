@@ -1680,42 +1680,121 @@ h1, h2, h3, h4, .font-serif {
   text-decoration: underline;
 }
 
-/* Botón Flotante WhatsApp Empresa */
-.floating-whatsapp-btn {
+/* ==========================================================================
+   BOTONES FLOTANTES LATERALES (WHATSAPP EMPRESA & INSTAGRAM)
+   ========================================================================== */
+.floating-social-dock {
   position: fixed;
-  bottom: 24px;
+  bottom: 26px;
   right: 24px;
-  background: #25D366;
-  color: #ffffff;
-  padding: 12px 20px;
-  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+
+.floating-social-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 50px;
   text-decoration: none;
+  font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 0.95rem;
-  z-index: 999;
-  transition: all 0.3s ease;
+  font-size: 0.92rem;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.2px;
 }
 
-.floating-whatsapp-btn:hover {
-  background: #1eb956;
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
-  color: #ffffff;
+.floating-social-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s ease;
 }
 
+.floating-social-btn:hover::before {
+  left: 100%;
+}
+
+.floating-social-btn:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+
+.floating-social-btn .btn-svg-icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Variante WhatsApp */
+.floating-btn-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.38);
+}
+
+.floating-btn-whatsapp:hover {
+  background: linear-gradient(135deg, #2ae06f 0%, #179e8e 100%);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.55);
+}
+
+/* Variante Instagram */
+.floating-btn-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 6px 20px rgba(204, 35, 102, 0.38);
+}
+
+.floating-btn-instagram:hover {
+  background: linear-gradient(45deg, #fca041 0%, #f17449 25%, #e6324d 50%, #d82b71 75%, #ca2295 100%);
+  box-shadow: 0 10px 28px rgba(204, 35, 102, 0.55);
+}
+
+/* Animación sutil de respiración en WhatsApp */
+@keyframes pulseWa {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.floating-btn-whatsapp {
+  animation: pulseWa 4s infinite ease-in-out;
+}
+
+.floating-btn-whatsapp:hover {
+  animation: none;
+}
+
+/* Ajustes Responsive en Móviles */
 @media (max-width: 600px) {
-  .floating-whatsapp-btn .floating-wa-label {
-    display: none;
-  }
-  .floating-whatsapp-btn {
-    padding: 14px 15px;
-    border-radius: 50%;
+  .floating-social-dock {
     bottom: 20px;
-    right: 20px;
-    font-size: 1.2rem;
+    right: 18px;
+    gap: 10px;
+  }
+  
+  .floating-social-btn {
+    padding: 12px 14px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+  }
+
+  .floating-social-btn .btn-svg-icon {
+    width: 20px;
+    height: 20px;
   }
 }

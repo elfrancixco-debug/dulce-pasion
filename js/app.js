@@ -582,9 +582,14 @@ function openProductDetailModal(productId) {
           </div>
         </div>
 
-        <button class="btn btn-primary w-100" onclick="addToCart('${product.id}'); closeModal('productDetailModal');">
-          🍰 Añadir a mi pedido ($${product.price.toLocaleString('es-CL')})
-        </button>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <button class="btn btn-primary" style="flex: 1;" onclick="addToCart('${product.id}'); closeModal('productDetailModal');">
+            🍰 Añadir al Carrito
+          </button>
+          <a href="https://wa.me/56964567422?text=Hola%20Dulce%20Pasi%C3%B3n,%20quisiera%20consultar%20o%20pedir%20la%20torta%20*${encodeURIComponent(product.name)}*%20($${product.price.toLocaleString('es-CL')})" target="_blank" class="btn btn-whatsapp" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; font-size: 0.88rem; text-decoration: none;">
+            💬 Pedir por WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   `;
@@ -620,6 +625,17 @@ function openCheckoutModal() {
   document.getElementById('checkoutAddress').value = user.direccion || '';
   document.getElementById('checkoutComuna').value = user.comuna || 'San Bernardo';
 
+  const dateInput = document.getElementById('checkoutDate');
+  if (dateInput) {
+    const now = new Date();
+    now.setHours(now.getHours() + 2);
+    const minIso = now.toISOString().slice(0, 16);
+    dateInput.min = minIso;
+    if (!dateInput.value) {
+      dateInput.value = minIso;
+    }
+  }
+
   checkoutModal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -641,44 +657,63 @@ function processCheckoutOrder(e) {
   }
 
   const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-  const shipping = (subtotal >= 30000 || comuna !== 'San Bernardo') ? 0 : 2500;
+  const shipping = (subtotal >= 30000 || comuna.includes('Retiro') || (subtotal > 0 && comuna === 'San Bernardo' && subtotal >= 30000)) ? 0 : 2500;
   const discountVal = Math.round(subtotal * appliedDiscount);
-  const total = subtotal - discountVal + shipping;
+  const total = Math.max(0, subtotal - discountVal + shipping);
 
-  // Generar mensaje para WhatsApp con formato chileno
-  let msg = `🍰 *NUEVO PEDIDO - DULCE PASIÓN REPOSTERÍA ARTESANAL*\n`;
+  // Formatear fecha y hora para lectura amigable
+  let formattedDate = deliveryDate;
+  try {
+    const dObj = new Date(deliveryDate);
+    if (!isNaN(dObj.getTime())) {
+      const opciones = { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' };
+      formattedDate = dObj.toLocaleDateString('es-CL', opciones) + ' hrs';
+    }
+  } catch(err) {}
+
+  // Generar mensaje automático para WhatsApp Empresa (+56 9 6456 7422)
+  let msg = `🎂 *NUEVO PEDIDO - DULCE PASIÓN REPOSTERÍA ARTESANAL*\n`;
+  msg += `_San Bernardo • Santiago de Chile_\n`;
   msg += `-------------------------------------------\n`;
   msg += `👤 *Cliente:* ${name}\n`;
   msg += `📞 *Teléfono:* ${phone}\n`;
-  msg += `📍 *Dirección:* ${address}, ${comuna}\n`;
-  msg += `📅 *Fecha requerida:* ${deliveryDate}\n`;
+  msg += `📍 *Comuna:* ${comuna}\n`;
+  msg += `🏠 *Dirección / Entrega:* ${address}\n`;
+  msg += `📅 *Fecha y Horario Solicitado:* ${formattedDate}\n`;
   msg += `💳 *Método de Pago:* ${paymentMethod}\n`;
-  if (notes) msg += `📝 *Observaciones:* ${notes}\n`;
+  if (notes) {
+    msg += `📝 *Dedicatoria o Notas:* ${notes}\n`;
+  }
   msg += `-------------------------------------------\n`;
-  msg += `*DETALLE DEL PEDIDO:*\n`;
+  msg += `🍰 *DETALLE DEL PEDIDO:*\n`;
 
-  cart.forEach(item => {
-    msg += `• ${item.quantity}x ${item.name} ($${(item.price * item.quantity).toLocaleString('es-CL')})\n`;
+  cart.forEach((item, idx) => {
+    msg += `${idx + 1}. *${item.name}* x${item.quantity} = $${(item.price * item.quantity).toLocaleString('es-CL')}\n`;
   });
 
   msg += `-------------------------------------------\n`;
-  msg += `Subtotal: $${subtotal.toLocaleString('es-CL')}\n`;
-  if (discountVal > 0) msg += `Descuento: -$${discountVal.toLocaleString('es-CL')}\n`;
-  msg += `Envío (${comuna}): $${shipping.toLocaleString('es-CL')}\n`;
-  msg += `*TOTAL A PAGAR: $${total.toLocaleString('es-CL')}*\n`;
+  msg += `💰 *Subtotal:* $${subtotal.toLocaleString('es-CL')}\n`;
+  if (discountVal > 0) {
+    msg += `🎁 *Descuento aplicado (${appliedCouponCode || 'Cupón'}):* -$${discountVal.toLocaleString('es-CL')}\n`;
+  }
+  msg += `🚚 *Despacho (${comuna}):* ${shipping === 0 ? '¡GRATIS!' : '$' + shipping.toLocaleString('es-CL')}\n`;
+  msg += `⭐ *TOTAL A PAGAR: $${total.toLocaleString('es-CL')}*\n`;
   msg += `-------------------------------------------\n`;
-  msg += `¡Muchas gracias por apoyar nuestra repostería artesanal en San Bernardo! ✨`;
+  msg += `Hola Dulce Pasión, acabo de armar mi pedido en la página web y quiero confirmarlo para que lo preparen. ¡Muchas gracias! ✨`;
 
   const encodedMsg = encodeURIComponent(msg);
   const whatsappUrl = `https://wa.me/56964567422?text=${encodedMsg}`;
 
-  // Cerrar checkout modal y limpiar carrito
+  // 1. Abrir WhatsApp DIRECTAMENTE con el mensaje prellenado
+  window.open(whatsappUrl, '_blank');
+
+  // 2. Cerrar checkout modal y limpiar carrito
   closeModal('checkoutModal');
   cart = [];
   saveCart();
   updateCartUI();
 
-  // Abrir modal de éxito y enlace a WhatsApp
+  // 3. Abrir modal de confirmación con botón de respaldo
   const successModal = document.getElementById('orderSuccessModal');
   const detailsEl = document.getElementById('orderSuccessDetails');
   const waBtn = document.getElementById('orderWhatsAppBtn');
@@ -686,14 +721,18 @@ function processCheckoutOrder(e) {
   if (detailsEl) {
     detailsEl.innerHTML = `
       <div style="background: #fdf6f0; padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); font-size: 0.9rem; text-align: left; margin: 16px 0;">
-        <p><strong>Pedido registrado para:</strong> ${name}</p>
-        <p><strong>Comuna y Entrega:</strong> ${comuna} (${deliveryDate})</p>
-        <p><strong>Total:</strong> $${total.toLocaleString('es-CL')} (${paymentMethod})</p>
+        <p><strong>👤 Cliente:</strong> ${name}</p>
+        <p><strong>📍 Comuna y Entrega:</strong> ${comuna} (${formattedDate})</p>
+        <p><strong>⭐ Total:</strong> $${total.toLocaleString('es-CL')} (${paymentMethod})</p>
       </div>
+      <p style="font-size: 0.88rem; color: #2b7a3a; font-weight: 600;">
+        ✅ Si WhatsApp no se abrió automáticamente en tu celular o navegador, presiona el botón verde de abajo:
+      </p>
     `;
   }
 
   if (waBtn) {
+    waBtn.innerHTML = `💬 Abrir Chat en WhatsApp Empresa (+56 9 6456 7422)`;
     waBtn.onclick = () => {
       window.open(whatsappUrl, '_blank');
     };
@@ -702,6 +741,8 @@ function processCheckoutOrder(e) {
   if (successModal) {
     successModal.classList.add('active');
   }
+
+  showToast('¡Redirigiendo a WhatsApp para confirmar tu pedido! 🍰');
 }
 
 // ==========================================================================

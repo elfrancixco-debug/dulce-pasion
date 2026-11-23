@@ -618,8 +618,8 @@
         <span id="cartTotalAmount">$0</span>
       </div>
 
-      <button class="btn btn-primary w-100" onclick="openCheckoutModal()">
-        🍰 Continuar y Finalizar Pedido
+      <button class="btn btn-whatsapp w-100" onclick="openCheckoutModal()" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; font-size: 1rem; padding: 14px;">
+        <span>💬</span> Completar Pedido por WhatsApp
       </button>
     </div>
   </aside>
@@ -643,9 +643,12 @@
     <div class="modal-box">
       <button class="modal-header-close" onclick="closeModal('checkoutModal')" aria-label="Cerrar">✕</button>
       <div class="modal-body">
-        <h3 class="font-serif" style="color: var(--color-primary-dark); margin-bottom: 6px;">Finalizar Pedido en San Bernardo</h3>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+          <span style="font-size: 1.6rem;">💬</span>
+          <h3 class="font-serif" style="color: var(--color-primary-dark); margin: 0;">Completar Pedido por WhatsApp</h3>
+        </div>
         <p style="color: var(--color-text-muted); font-size: 0.88rem; margin-bottom: 20px;">
-          Ingresa tus datos para coordinar el despacho directo o retiro de tu repostería artesanal.
+          Completa tus datos de entrega y al presionar el botón se abrirá WhatsApp con el mensaje automático listo para enviar a nuestro WhatsApp Empresa (+56 9 6456 7422).
         </p>
 
         <form id="checkoutOrderForm" onsubmit="processCheckoutOrder(event)">
@@ -656,7 +659,7 @@
             </div>
             <div class="form-group">
               <label class="form-label" for="checkoutPhone">Teléfono / WhatsApp <span class="req">*</span></label>
-              <input type="tel" id="checkoutPhone" class="form-control" required placeholder="+56 9 ...">
+              <input type="tel" id="checkoutPhone" class="form-control" required placeholder="+56 9 1234 5678">
             </div>
           </div>
 
@@ -664,7 +667,8 @@
             <div class="form-group">
               <label class="form-label" for="checkoutComuna">Comuna de Entrega <span class="req">*</span></label>
               <select id="checkoutComuna" class="form-control">
-                <option value="San Bernardo" selected>San Bernardo</option>
+                <option value="San Bernardo" selected>San Bernardo (Zona Principal)</option>
+                <option value="Retiro en Taller (San Bernardo)">Retiro en Taller (San Bernardo - Sin costo)</option>
                 <option value="Santiago">Santiago Centro</option>
                 <option value="Providencia">Providencia</option>
                 <option value="Las Condes">Las Condes</option>
@@ -674,14 +678,14 @@
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label" for="checkoutDate">Fecha y Hora Requerida <span class="req">*</span></label>
+              <label class="form-label" for="checkoutDate">Fecha y Hora que te acomoda <span class="req">*</span></label>
               <input type="datetime-local" id="checkoutDate" class="form-control" required>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="checkoutAddress">Dirección Exacta de Despacho <span class="req">*</span></label>
-            <input type="text" id="checkoutAddress" class="form-control" required placeholder="Calle, Número, Depto o Villa">
+            <label class="form-label" for="checkoutAddress">Dirección de Despacho (o indicar retiro) <span class="req">*</span></label>
+            <input type="text" id="checkoutAddress" class="form-control" required placeholder="Ej: Calle San Martín #450 / Depto 302 o 'Retiro en taller'">
           </div>
 
           <div class="form-group">
@@ -694,12 +698,12 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="checkoutNotes">Notas especiales o dedicatoria</label>
-            <input type="text" id="checkoutNotes" class="form-control" placeholder="Ej: Escribir 'Feliz Cumple Mamá' en la torta">
+            <label class="form-label" for="checkoutNotes">Dedicatoria en la torta o notas especiales</label>
+            <input type="text" id="checkoutNotes" class="form-control" placeholder="Ej: Escribir 'Feliz Cumpleaños Mamá' con letras doradas">
           </div>
 
-          <button type="submit" class="btn btn-primary w-100" style="margin-top: 10px;">
-            🎂 Confirmar Pedido y Abrir Resumen
+          <button type="submit" class="btn btn-whatsapp w-100" style="margin-top: 14px; padding: 14px 20px; font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 16px rgba(37,211,102,0.4);">
+            <span style="font-size: 1.3rem;">💬</span> Enviar Pedido a WhatsApp Empresa (+56 9 6456 7422)
           </button>
         </form>
       </div>

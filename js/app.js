@@ -670,7 +670,7 @@ function processCheckoutOrder(e) {
   msg += `¡Muchas gracias por apoyar nuestra repostería artesanal en San Bernardo! ✨`;
 
   const encodedMsg = encodeURIComponent(msg);
-  const whatsappUrl = `https://wa.me/56987654321?text=${encodedMsg}`;
+  const whatsappUrl = `https://wa.me/56964567422?text=${encodedMsg}`;
 
   // Cerrar checkout modal y limpiar carrito
   closeModal('checkoutModal');

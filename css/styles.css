@@ -1679,3 +1679,43 @@ h1, h2, h3, h4, .font-serif {
 .client-wa-btn:hover {
   text-decoration: underline;
 }
+
+/* Botón Flotante WhatsApp Empresa */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #25D366;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.floating-whatsapp-btn:hover {
+  background: #1eb956;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .floating-whatsapp-btn .floating-wa-label {
+    display: none;
+  }
+  .floating-whatsapp-btn {
+    padding: 14px 15px;
+    border-radius: 50%;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.2rem;
+  }
+}
